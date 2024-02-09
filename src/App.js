@@ -198,12 +198,12 @@ function App() {
 
       <button style={ !nightLight ? buttonStyle : nightLightOnStyle} onClick={toggleNightLight}>Night Light</button>
       
-      <button style={!nightLight ? exitButtonStyle : nightLightExitButtonStyle} onClick={() => window.electronAPI ? window.electronAPI.exitApp() : alert('exit')} >
+      <button style={!nightLight ? exitButtonStyle : nightLightExitButtonStyle} onClick={() => toggleFullscreen()} >
     X
       </button>
 
       {sliderValue < 100 ?
-      <button style={nightLight ? exitButtonStyle : nightLightExitButtonStyle} onClick={() => {window.electronAPI ? window.electronAPI.exitApp() : console.log('exit'); toggleFullscreen()}} >
+      <button style={nightLight ? exitButtonStyle : nightLightExitButtonStyle} onClick={() => {console.log('exit'); toggleFullscreen()}} >
     X
       </button> : ''}
 
