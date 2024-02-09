@@ -69,6 +69,7 @@ function App() {
 
   const handleSpeedChange = (delta) => {
   setNightLight(false)
+   console.log(delta)
     setSpeed((prevSpeed) => Math.max(20, Math.min(2000, prevSpeed + delta)));
   };
 
@@ -190,25 +191,26 @@ function App() {
   }}
          axis="y" y={state.y} onChange={({ y }) => {setSliderValue(y/100); setState(state => ({ ...state, y }))}} />  
       <div style={{background: "black", opacity: robert, width: '100vw', height: '100vh', position: "absolute"}}></div>
-      <button style={{...buttonStyle, opacity: nightLight ? 0 : 1}} onClick={() => handleSpeedChange(-40)}>Slower</button>
-<button style={{...buttonStyle, opacity: nightLight ? 0 : 1}} onClick={() => handleSpeedChange(40)}>Faster</button>
+      <button style={{...buttonStyle, opacity: nightLight ? 0 : 1, zIndex: 3800}} onClick={() => handleSpeedChange(-40)}>Slower</button>
+<button style={{...buttonStyle, opacity: nightLight ? 0 : 1,zIndex: 3900}} onClick={() => handleSpeedChange(40)}>Faster</button>
 <button style={{...buttonStyle, opacity: nightLight ? 0 : 1, zIndex: 3000}} onClick={handleIntensityChange}>{intensity}</button>
 
+
       <button style={ !nightLight ? buttonStyle : nightLightOnStyle} onClick={toggleNightLight}>Night Light</button>
+      
       <button style={!nightLight ? exitButtonStyle : nightLightExitButtonStyle} onClick={() => window.electronAPI ? window.electronAPI.exitApp() : alert('exit')} >
     X
       </button>
 
       {sliderValue < 100 ?
-      <button style={nightLight ? exitButtonStyle : nightLightExitButtonStyle} onClick={() => {window.electronAPI ? window.electronAPI.exitApp() : alert('exit')}} >
+      <button style={nightLight ? exitButtonStyle : nightLightExitButtonStyle} onClick={() => {window.electronAPI ? window.electronAPI.exitApp() : console.log('exit'); toggleFullscreen()}} >
     X
       </button> : ''}
 
-      <button style={buttonStyle} onClick={toggleFullscreen}>
+     
+      <button style={{...buttonStyle, opacity: nightLight ? 0 : 1, zIndex: 4000}} onClick={toggleFullscreen}>
         {isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
       </button>
-
-
     </div>
   );
 }
